@@ -17,6 +17,11 @@ connection.On<string>("QueueJoined", (message) =>
     Console.WriteLine($"Server Message: {message}");
 });
 
+connection.On<string>("MatchFound", (message) => 
+{
+    Console.WriteLine($"Server Message: {message}");
+});
+
 connection.Closed += async (error) =>
 {
     Console.WriteLine("Connection Closed");
@@ -31,7 +36,7 @@ try
 
     while (true)
     {
-        var input = Console.ReadLine();
+        var input = Console.ReadLine() ?? "";
 
         if(input?.ToLower() == "quit")
             break;
